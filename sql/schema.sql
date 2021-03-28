@@ -6,7 +6,7 @@ CREATE TABLE twitter_tweets(
     tweets VARCHAR NOT NULL,
     id INT NOT NULL,
     len INTEGER,
-    date DATETIME,
+    date DATE,
     source VARCHAR NOT NULL,
     likes INTEGER,
     retweets INTEGER,
