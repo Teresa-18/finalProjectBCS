@@ -1,6 +1,6 @@
 # pip install tweepy
 from config import consumer_key,consumer_secret,access_token,access_token_secret
-# import tweepy
+import tweepy
 from tweepy import API 
 from tweepy import Cursor
 from tweepy.streaming import StreamListener
@@ -9,6 +9,7 @@ from tweepy import Stream
 import datetime as dt
 import numpy as np
 import pandas as pd
+
 
 # Output File (CSV)
 output_data_file = "./output_data/tweets.csv"

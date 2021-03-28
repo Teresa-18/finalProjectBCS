@@ -10,9 +10,10 @@ CREATE TABLE twitter_tweets(
     source VARCHAR NOT NULL,
     likes INTEGER,
     retweets INTEGER,
+    PRIMARY KEY (id)
 );
 
---create table in Twitter_DB
-CREATE TABLE tweet_words(
-    words VARCHAR NOT NULL,
-);
+-- --create table in Twitter_DB
+-- CREATE TABLE tweet_words(
+--     words VARCHAR NOT NULL,
+-- );
