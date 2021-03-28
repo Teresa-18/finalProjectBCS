@@ -9,6 +9,9 @@ import datetime as dt
 import numpy as np
 import pandas as pd
 
+# Output File (CSV)
+output_data_file = "./output_data/tweets.csv"
+
 auth = tweepy.AppAuthHandler(consumer_key, consumer_secret)
 #auth.set_access_token(access_token, access_token_secret)
 
@@ -47,6 +50,10 @@ if __name__ == '__main__':
     tweet_analyzer = TweetAnalyzer()
     df = tweet_analyzer.tweets_to_data_frame(tweets)
     print(df.head(10))
+
+
+#Write DataFrame to CSV file "cities.csv"
+df.to_csv(output_data_file)
 #status = api.get_status(id, tweet_mode="extended")
 #try:
 #    print(status.retweeted_status.full_text)
