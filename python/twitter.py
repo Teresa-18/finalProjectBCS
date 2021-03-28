@@ -1,8 +1,6 @@
-# config file
-config = "..../Desktop/config.py"
-# C:\Users\tmlun\finalProjectBCS\python
+
 # pip install tweepy
-# from config import consumer_key,consumer_secret,access_token,access_token_secret
+from config import consumer_key,consumer_secret,access_token,access_token_secret
 import tweepy
 from tweepy import API 
 from tweepy import Cursor
