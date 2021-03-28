@@ -1,10 +1,11 @@
+# pip install tweepy
 from config import consumer_key,consumer_secret,access_token,access_token_secret
-import tweepy
-# from tweepy import API 
-# from tweepy import Cursor
-# from tweepy.streaming import StreamListener
-# from tweepy import OAuthHandler
-# from tweepy import Stream
+# import tweepy
+from tweepy import API 
+from tweepy import Cursor
+from tweepy.streaming import StreamListener
+from tweepy import OAuthHandler
+from tweepy import Stream
 import datetime as dt
 import numpy as np
 import pandas as pd
