@@ -31,7 +31,7 @@ except:
     print("Authentication Unable to Complete")
 
 tweets = []
-for tweet in tweepy.Cursor(api.search, rpp=100, since=date_since, until=date_until).items(10):
+for tweet in tweepy.Cursor(api.search, q='monday', rpp=100, since=date_since, until=date_until).items(20):
     tweets.append(tweet)
 print(tweets)
     
