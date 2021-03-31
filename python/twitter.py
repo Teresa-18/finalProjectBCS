@@ -17,8 +17,10 @@ output_data_file = "./output_data/tweets.csv"
 auth = tweepy.AppAuthHandler(consumer_key, consumer_secret)
 #auth.set_access_token(access_token, access_token_secret)
 
-seven_days = (dt.datetime.now() - dt.timedelta(days=7)).strftime("%Y-%m-%d")
-five_days = (dt.datetime.now() - dt.timedelta(days=5)).strftime("%Y-%m-%d")
+#03/28/2021
+date_since = (dt.datetime(2021, 3, 28)).strftime("%Y-%m-%d")
+#03/30/2021
+date_until = (dt.datetime(2021, 3, 30)).strftime("%Y-%m-%d")
 
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
@@ -29,7 +31,7 @@ except:
     print("Authentication Unable to Complete")
 
 tweets = []
-for tweet in tweepy.Cursor(api.search, q='monday', rpp=100, since=seven_days, until=five_days).items(10):
+for tweet in tweepy.Cursor(api.search, rpp=100, since=date_since, until=date_until).items(10):
     tweets.append(tweet)
 print(tweets)
     
