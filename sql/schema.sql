@@ -4,7 +4,7 @@ DROP TABLE twitter_tweets;
 --create table in Twitter_DB
 CREATE TABLE twitter_tweets(
     tweets VARCHAR NOT NULL,
-    id INT NOT NULL,
+    id BIGINT NOT NULL,
     len INTEGER,
     date DATE,
     source VARCHAR NOT NULL,
