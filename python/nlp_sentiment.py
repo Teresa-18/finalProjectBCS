@@ -50,12 +50,14 @@ def remove_noise(tokens, stop_words = ()):
         if len(token) > 0 and token not in string.punctuation and token.lower() not in stop_words:
             cleaned_tokens.append(token.lower())
     return cleaned_tokens
+    # print(cleaned_tokens)
 
 
 def get_all_words(cleaned_tokens_list):
     for tokens in cleaned_tokens_list:
         for token in tokens:
             yield token
+        print(token)
 
 def get_tweets_for_model(cleaned_tokens_list):
     for tokens in cleaned_tokens_list:
@@ -114,15 +116,16 @@ if __name__ == "__main__":
 
     # print("Accuracy is:", classify.accuracy(classifier, test_data))
 
-    print(classifier.show_most_informative_features(10))
+    # print(classifier.show_most_informative_features(10))
 
     # custom_tweet = "Thank you for sending my baggage to CityX and flying me to CityY at the same time. Brilliant service. #thanksGenericAirline"
 
     # custom_tokens = remove_noise(word_tokenize(custom_tweet))
 
-    print(classifier.classify(dict([token, True] for token in tokens)))
+    # print(classifier.classify(dict([token, True] for token in tokens)))
 
     
-    print(remove_noise(tokens, stop_words))
+    # print(remove_noise(tokens, stop_words))
+    
 # print(positive_tweet_tokens[500])
 # print(positive_cleaned_tokens_list[500])
