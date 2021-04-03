@@ -57,7 +57,8 @@ def get_all_words(cleaned_tokens_list):
     for tokens in cleaned_tokens_list:
         for token in tokens:
             yield token
-        print(token)
+            
+
 
 def get_tweets_for_model(cleaned_tokens_list):
     for tokens in cleaned_tokens_list:
