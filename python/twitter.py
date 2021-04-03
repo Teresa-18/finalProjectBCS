@@ -58,30 +58,3 @@ if __name__ == '__main__':
 
 #Write DataFrame to CSV file "tweets.csv"
 df.to_csv(output_data_file)
-#status = api.get_status(id, tweet_mode="extended")
-#try:
-#    print(status.retweeted_status.full_text)
-#except AttributeError:  # Not a Retweet
-#    print(status.full_text)
-
-#for status in tweepy.Cursor(api.user_timeline).items():
-#    # process status here
-#    process_status(status)
-#    
-#def on_status(self, status):
-#    if hasattr(status, "retweeted_status"):  # Check if Retweet
-#        try:
-#            print(status.retweeted_status.extended_tweet["full_text"])
-#        except AttributeError:
-#            print(status.retweeted_status.text)
-#    else:
-#        try:
-#            print(status.extended_tweet["full_text"])
-#        except AttributeError:
-#            print(status.text)
-            
-            
-
-#for tweet in Cursor(self.twitter_client.user_timeline, id=self.twitter_user).items(num_tweets):
-#    tweets.append(tweet)
-#return tweets
