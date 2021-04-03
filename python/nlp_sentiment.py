@@ -1,4 +1,9 @@
 #import dependencies
+import os
+import json
+from nltk.corpus.reader import twitter
+from sqlalchemy import create_engine
+from sqlalchemy import text
 import pandas as pd
 from bs4 import BeautifulSoup
 import urllib.request
@@ -10,7 +15,14 @@ from nltk.stem.wordnet import WordNetLemmatizer
 import re, string, random
 from nltk import FreqDist, classify, NaiveBayesClassifier
 
+#database connection
+connection_string ="postgres:Shjais2014@localhost:5432/twitter_db"
+engine = create_engine(f'postgresql://{connection_string}')
 
+def get_twitter_data():
+    tweet_data = pd.read_sql("select * from twitter_tweets;", con=engine)
+
+    return tweet_data['Tweets'].to_list()
 
 def remove_noise(tweet_tokens, stop_words = ()):
 
@@ -44,6 +56,17 @@ def get_tweets_for_model(cleaned_tokens_list):
     for tweet_tokens in cleaned_tokens_list:
         yield dict([token, True] for token in tweet_tokens)
 
+def get_only_tweets():
+    twitter = []
+    tweets = get_twitter_data()
+    if not tweets:
+        print("empty")
+    for row in tweets:
+        if type(row) is dict:
+            twitter.append(row['text'])
+    return twitter
+    # print(twitter)
+
 
 # print(tweet_tokens[0])
 # print(pos_tag(tweet_tokens[0]))
@@ -63,20 +86,23 @@ def get_tweets_for_model(cleaned_tokens_list):
 
 # print(lemmatize_sentence(tweet_tokens[0]))
 
-if__name__ == "__main__":
+if __name__ == "__main__":
+    # html = response.read()
     positive_tweets = twitter_samples.strings('positive_tweets.json')
     negative_tweets = twitter_samples.strings('negative_tweets.json')
-    text = twitter_samples.strings('tweets.20150430-223406.json')
+    # soup = BeautifulSoup(html,'html5lib')
+    # twd = twitter
 
     positive_tweet_tokens = twitter_samples.tokenized('positive_tweets.json')
     negative_tweet_tokens = twitter_samples.tokenized('negative_tweets.json')
-    tweet_tokens = twitter_samples.tokenized('positive_tweets.json')
+    toknzr = TweetTokenizer()
+    tweet_tokens = toknzr.tokenize(twitter)
 
     stop_words = stopwords.words('english')
 
     positive_cleaned_tokens_list = []
     negative_cleaned_tokens_list = []
-
+ 
     for tokens in positive_tweet_tokens:
         positive_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
 
@@ -106,17 +132,17 @@ if__name__ == "__main__":
 
     classifier = NaiveBayesClassifier.train(train_data)
 
-    print("Accuracy is:", classify.accuracy(classifier, test_data))
+    # print("Accuracy is:", classify.accuracy(classifier, test_data))
 
-    print(classifier.show_most_informative_features(10))
+    # print(classifier.show_most_informative_features(10))
 
-    custom_tweet = "Thank you for sending my baggage to CityX and flying me to CityY at the same time. Brilliant service. #thanksGenericAirline"
+    # custom_tweet = "Thank you for sending my baggage to CityX and flying me to CityY at the same time. Brilliant service. #thanksGenericAirline"
 
-    custom_tokens = remove_noise(word_tokenize(custom_tweet))
+    # custom_tokens = remove_noise(word_tokenize(custom_tweet))
 
-    print(custom_tweet, classifier.classify(dict([token, True] for token in custom_tokens)))
+    # print(classifier.classify(dict([token, True] for token in custom_tokens)))
 
 
-# print(remove_noise(tweet_tokens[0], stop_words))
+    print(remove_noise(tweet_tokens, stop_words))
 # print(positive_tweet_tokens[500])
 # print(positive_cleaned_tokens_list[500])
