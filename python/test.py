@@ -14,7 +14,7 @@ import os
 # db = os.environ.get('DATABASE_URL')
 # engine = create_engine(db)
 
-connection_string ="postgres:Shjais2014@localhost:5432/twitter_db"
+connection_string ="postgres:*******@localhost:5432/twitter_db"
 engine = create_engine(f'postgresql://{connection_string}')
 # engine = create_engine(db_string)
 print('Loading Engine...')
