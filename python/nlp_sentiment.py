@@ -18,19 +18,22 @@ from nltk import FreqDist, classify, NaiveBayesClassifier
 # Output File (CSV)
 output_data_file = "./output_data/words.csv"
 
+# scrape the data(tweets) from the the S3 bucket after it's called in
 response =  urllib.request.urlopen('https://data-bootcamp-036.s3.us-east-2.amazonaws.com/tweets.csv')
 html = response.read()
 # print(html)
 
+# pull data out of the html response and strip all html tags
 soup = BeautifulSoup(html,'html5lib')
 text = soup.get_text(strip = True)
 # print(text)
 
+# tokenize the data (split into separate words)
 from nltk.tokenize import TweetTokenizer
 tokened = TweetTokenizer()
 tokens = tokened.tokenize(text)
 
-# def remove_noise(tokens, stop_words = ()):
+# removes noise and cleans out symbols and numbers not needed for our use
 stop_words = stopwords.words('english')+['0','1','2','3','4','5','6','7','8','9','¦','�','€','[0-9]']
 cleaned_tokens = []
 
@@ -56,9 +59,12 @@ for token, tag in pos_tag(tokens):
 
     # print(cleaned_tokens)
 
+# returns a list of the most frequent words used
 freq_dist_all = FreqDist(cleaned_tokens)
 print(freq_dist_all.most_common(20))
 
+# Convert to a DataFrame
 df = pd.DataFrame(cleaned_tokens)
 
+# Write DataFrame to a csv file
 df.to_csv(output_data_file)
