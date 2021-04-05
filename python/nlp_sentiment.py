@@ -42,7 +42,7 @@ for token, tag in pos_tag(tokens):
                     '(?:%[0-9a-fA-F][0-9a-fA-F]))+','', token)
     token = re.sub("(@[A-Za-z0-9_]+)","", token)
 
-    token = re.sub("0,1,2,3,4,5,6,7,8,9,¦,�,€","",token)
+    token = re.sub("0,1,2,3,4,5,6,7,8,9,¦,�,€,™","",token)
 
     if tag.startswith("NN"):
         pos = 'n'
@@ -58,6 +58,19 @@ for token, tag in pos_tag(tokens):
         cleaned_tokens.append(token.lower())
 
     # print(cleaned_tokens)
+
+
+# positive_tweet_tokens = twitter_samples.tokenized('positive_tweets.json')
+# negative_tweet_tokens = twitter_samples.tokenized('negative_tweets.json')
+
+# positive_cleaned_tokens_list = []
+# negative_cleaned_tokens_list = []
+
+# for tokens in positive_tweet_tokens:
+#     positive_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
+
+# for tokens in negative_tweet_tokens:
+#     negative_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
 
 # returns a list of the most frequent words used
 freq_dist_all = FreqDist(cleaned_tokens)

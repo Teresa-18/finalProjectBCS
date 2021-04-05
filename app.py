@@ -1,5 +1,5 @@
 # import necessary libraries
-from models import create_classes
+# from models import create_classes
 import os
 from flask import (
     Flask,
@@ -25,7 +25,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-Pet = create_classes(db)
+# Pet = create_classes(db)
 
 # create route that renders index.html template
 @app.route("/")
