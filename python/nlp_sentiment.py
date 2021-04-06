@@ -19,7 +19,7 @@ from nltk import FreqDist, classify, NaiveBayesClassifier
 # output_data_file = "./output_data/words.csv"
 
 # scrape the data(tweets) from the the S3 bucket after it's called in
-response =  urllib.request.urlopen('https://data-bootcamp-036.s3.us-east-2.amazonaws.com/monday_tweets.csv')
+response =  urllib.request.urlopen('https://data-bootcamp-036.s3.us-east-2.amazonaws.com/april_tweets.csv')
 html = response.read()
 # print(html)
 
@@ -80,7 +80,7 @@ if __name__ == "__main__":
 
     positive_cleaned_tokens_list = []
     negative_cleaned_tokens_list = []
-    monday_cleaned_tokens_list = []
+    april_cleaned_tokens_list = []
 
     for tokens in positive_tweet_tokens:
         positive_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
@@ -89,11 +89,11 @@ if __name__ == "__main__":
         negative_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
 
     for token in tokens:
-        monday_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
+        april_cleaned_tokens_list.append(remove_noise(tokens, stop_words))
 
     positive_tokens_for_model = get_tweets_for_model(positive_cleaned_tokens_list)
     negative_tokens_for_model = get_tweets_for_model(negative_cleaned_tokens_list)
-    monday_tokens_for_model = get_tweets_for_model(monday_cleaned_tokens_list)
+    monday_tokens_for_model = get_tweets_for_model(april_cleaned_tokens_list)
 
     positive_dataset = [(tweet_dict, "Positive")
                             for tweet_dict in positive_tokens_for_model]
@@ -108,12 +108,12 @@ if __name__ == "__main__":
 
     random.shuffle(dataset)
 
-    train_data = dataset[:10000]
+    train_data = dataset
     testdata = test_dataset
 
     classifier = NaiveBayesClassifier.train(train_data)
 
     # returns a list of the most frequent words used
-    print(classifier.classify(dict([token, True] for token in custom_tokens)))
+    print(classifier.classify(dict([token, True] for token in tokens)))
 
     print(classifier.show_most_informative_features(10))
