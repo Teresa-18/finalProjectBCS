@@ -5,4 +5,18 @@ html {
     /* border-radius: 25px; */
     background-color: #1DA1F2;
     
+    
+   
+
+
+
   }
+  p {
+    text-align: match-parent;
+    font-weight: 500;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-stretch: expanded;
+    color: ghostwhite;
+}
+ 
