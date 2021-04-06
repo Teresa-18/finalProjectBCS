@@ -16,10 +16,10 @@ import re, string, random
 from nltk import FreqDist, classify, NaiveBayesClassifier
 
 # Output File (CSV)
-output_data_file = "./output_data/words.csv"
+output_data_file = "./output_data/friday_words.csv"
 
 # scrape the data(tweets) from the the S3 bucket after it's called in
-response =  urllib.request.urlopen('https://data-bootcamp-036.s3.us-east-2.amazonaws.com/tweets.csv')
+response =  urllib.request.urlopen('https://data-bootcamp-036.s3.us-east-2.amazonaws.com/friday_tweets.csv')
 html = response.read()
 # print(html)
 
