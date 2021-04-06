@@ -33,20 +33,15 @@ def home():
     return render_template("home.html")
 
 
-# # Query the database and send the jsonified results
-# @app.route("/send", methods=["GET", "POST"])
-# def send():
-#     if request.method == "POST":
-#         name = request.form["petName"]
-#         lat = request.form["petLat"]
-#         lon = request.form["petLon"]
+# Query the database and send the jsonified results
+@app.route("/data")
+def data():
+    return render_template("data.html")
 
-#         pet = Pet(name=name, lat=lat, lon=lon)
-#         db.session.add(pet)
-#         db.session.commit()
-#         return redirect("/", code=302)
-
-#     return render_template("form.html")
+# create route that renders index.html template
+@app.route("/Hashtag")
+def Hashtag():
+    return render_template("Hashtag.html")
 
 
 # @app.route("/api/pals")
